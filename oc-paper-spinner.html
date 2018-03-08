@@ -1,12 +1,12 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../paper-spinner/paper-spinner.html">
+<link rel="import" href="../paper-spinner/paper-spinner-lite.html">
 
 <dom-module id="oc-paper-spinner">
     <template>
         <style>
             #overlay {
                 position: fixed; /* Sit on top of the page content */
-                /*display: none; !* Hidden by default *!*/
+                display: none; /*!* Hidden by default *!*/
                 width: 100%; /* Full width (cover the whole page) */
                 height: 100%; /* Full height (cover the whole page) */
                 top: 0;
@@ -16,17 +16,25 @@
                 background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
                 z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
                 cursor: pointer; /* Add a pointer on hover */
+                text-align: center;
             }
 
             paper-spinner {
+                --paper-spinner-color: #e0992f;
+                max-width: 80px;
+                max-height: 80px;
+
                 left: 50%;
                 top: 50vh;
-                height: 80px;
-                width: 80px;
             }
         </style>
         <div id="overlay">
-            <paper-spinner id="dashboardSpinner" class="paper-spinner" active></paper-spinner>
+            <div style="margin: auto">
+                <paper-spinner-lite id="dashboardSpinner" class="thick"></paper-spinner-lite>
+                <div>
+                    <h3 style="color: #e0992f">Loading ...</h3>
+                </div>
+            </div>
         </div>
     </template>
     <script>
@@ -44,7 +52,7 @@
 			}
 
 			startSpinner() {
-				this.$.overlay.style.display = "initial";
+				this.$.overlay.style.display = "flex";
 				this.$.dashboardSpinner.active = true;
 			}
 
